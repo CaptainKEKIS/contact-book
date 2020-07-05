@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ContactList :api-address="apiAddress" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ContactList from "./components/ContactList.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      apiAddress: "https://localhost:2020/api/contacts"
+    };
+  },
   components: {
-    HelloWorld
+    ContactList
   }
-}
+};
 </script>
 
 <style>
