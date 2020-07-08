@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{apiAddress}}</h1>
+    <h1>Записная книжка</h1>
     <table>
       <thead>
         <th>Id</th>
@@ -9,11 +9,17 @@
         <th>Электронная почта</th>
       </thead>
       <tbody>
-        <tr v-for="contact in contactList" :Key="contact.Id">
+        <tr v-for="(contact, index) in contactList" :Key="contact.Id">
           <td>{{contact.id}}</td>
           <td>{{contact.name}}</td>
           <td>{{contact.phoneNumber}}</td>
           <td>{{contact.email}}</td>
+          <td>
+            <button @click="editContact(contact.Id, index)">Редактировать</button>
+          </td>
+          <td>
+            <button @click="deleteContact(contact.Id, index)">Удалить</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -40,6 +46,11 @@ export default {
       axios.get(this.apiAddress).then(response => {
         this.contactList = response.data;
       });
+    },
+    deleteContact(id, index) {
+      if (confirm("Вы уверены что хотите удалить этот контакт?")) {
+        axios.delete();
+      }
     }
   }
 };
